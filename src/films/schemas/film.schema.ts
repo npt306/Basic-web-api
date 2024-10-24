@@ -4,7 +4,7 @@ export type FilmDocument = HydratedDocument<Film>;
 
 @Schema()
 export class Film{
-    @Prop()
+    @Prop({unique: true})
     film_id: number;
 
     @Prop()
@@ -38,7 +38,7 @@ export class Film{
     rating: string;
 
     @Prop()
-    speacial_features: string;
+    special_features: string;
 
     @Prop()
     last_update: Date;

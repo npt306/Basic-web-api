@@ -1,4 +1,4 @@
-import { IsDate, IsNotEmpty, IsNumber, IsString, Max, Min } from "class-validator";
+import { IsNotEmpty, IsNumber, IsString, Max, Min, IsDateString, IsOptional} from "class-validator";
 
 export class CreateFilmDto {
     @IsNumber()
@@ -40,6 +40,6 @@ export class CreateFilmDto {
     @IsString()
     special_features: string;
 
-    @IsDate()
+    @IsDateString()
     last_update: Date;
 }
