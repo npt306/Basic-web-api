@@ -1,7 +1,8 @@
-import { IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsDate, IsNotEmpty, IsNumber, IsString, Max, Min } from "class-validator";
 
 export class CreateFilmDto {
     @IsNumber()
+    @IsNotEmpty({message: 'Film ID cannot be empty'})
     film_id: number;
 
     @IsString()
@@ -23,6 +24,8 @@ export class CreateFilmDto {
     rental_duration: number;
 
     @IsNumber()
+    @Max(5, {message: 'Rental rate cannot be more than 5'})
+    @Min(0, {message: 'Rental rate cannot be less than 0'})
     rental_rate: number;
 
     @IsNumber()
@@ -37,6 +40,6 @@ export class CreateFilmDto {
     @IsString()
     special_features: string;
 
-    @IsString()
+    @IsDate()
     last_update: Date;
 }
