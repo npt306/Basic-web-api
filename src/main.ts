@@ -2,9 +2,12 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger'
+import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  const configService = app.get(ConfigService);
+
   app.useGlobalPipes(new ValidationPipe(
     {
       whitelist: true, // remove any extra properties that are not in the DTO
@@ -24,7 +27,7 @@ async function bootstrap() {
   const documentFactory = () => SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, documentFactory);
 
-
-  await app.listen(3000);
+  const port = configService.get('PORT');
+  await app.listen(port);
 }
 bootstrap();
