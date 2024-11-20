@@ -17,7 +17,7 @@ export class LoggerService {
                 })
             ), 
             transports: [
-                new winston.transports.Console(),
+                // new winston.transports.Console(),
                 new winston.transports.DailyRotateFile({
                     filename: 'logs/basic-web-api-%DATE%.log',
                     datePattern: 'DD-MM-YYYY',
